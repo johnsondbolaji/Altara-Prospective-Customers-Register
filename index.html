@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Altara PCR</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+
+<body>
+<div id="app" v-cloak>
+	<div class="top-bar">
+<h1>{{appName}}</h1>
+</div>
+<br><br>
+
+<br>
+<form v-on:submit="addUser">
+	
+		<legend>Welcome! Register Your Prospective Customers</legend>
+		<br><br>
+<label>Full Name:</label>    <input type="text" v-model="newUser.name" placeholder="Enter Full Name"><br><br>
+<label>Email Address:</label> <input type="text" v-model="newUser.email" placeholder="Enter Email Address"><br><br>
+<label>Phone No:</label><input type="text" v-model="newUser.phone" placeholder="Enter Phone Number"><br><br>
+<input type="submit" value="Submit">
+
+</form>
+
+<br><br><br>
+<fieldset>
+<legend>Prospective Customers</legend>
+
+<ul>
+	
+	<li v-for='user in users'>
+<input type="checkbox" class="toggle" v-model="user.contacted">		
+<span :class="{contacted:user.contacted}"> {{user.name}} : {{user.email}} : {{user.phone}} <button class="fa fa-trash" v-on:click="deleteUser (user)"></button>
+</span>
+</li>
+</ul>
+</fieldset>
+</div>
+</body>
+
+<hr>
+
+<div class="footer">
+	<p>&copy; 2018 : Altara Credit</p>
+</div>
+
+</html>
+
+
+
+<script src='vue.js'></script>
+
+<script>
+new Vue({
+	el:'#app',
+	data:{
+		errors: [],
+		newUser: {},
+	appName:"Prospective Customers' Register",
+	users: [
+	{name: 'Johnson Daniel',
+	email: 'johnsondbolaji@gmail.com',
+	phone: '08063817266',
+	contacted: false}
+	]
+},
+	methods:{
+		addUser:function(e) {
+			this.users.push({
+				name: this.newUser.name,
+				email: this.newUser.email,
+				phone: this.newUser.phone,
+				contacted: false
+			});
+
+
+		e.preventDefault();
+		
+		},
+		deleteUser: function(user){
+			this.users.splice(this.users.indexOf(user),1);
+		}
+	}
+
+});
+
+</script>
