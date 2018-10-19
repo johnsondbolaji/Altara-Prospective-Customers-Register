@@ -1,2 +1,2 @@
 # Altara-Prospective-Customers-Register
-An app for storing customers DSAs have encounters with.
+An app for storing details of new customers that DSAs met with.
